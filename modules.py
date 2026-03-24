@@ -22,7 +22,7 @@ class Cargo(BaseModel):
 class Spaceship(BaseModel):
     ship_id: str
     model_name: str
-    max_capacity_kg: float
+    max_capacity_kg: float = Field(gt=0)
     captain: Captain
     cargo_hold: List[Cargo]
     arrival_date: date
@@ -32,8 +32,6 @@ class Spaceship(BaseModel):
     def validate_arrival(cls, v: date) -> date:
         if v < date.today():
             raise ValueError("Arrival date cannot be in the past.")
-        elif v > date.today():
-            raise ValueError("Arrival date cannot be in the future.")
         return v
 
     @model_validator(mode="after")
