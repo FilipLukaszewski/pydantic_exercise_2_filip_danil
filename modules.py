@@ -24,7 +24,7 @@ class Spaceship(BaseModel):
     model_name: str
     max_capacity_kg: float = Field(gt=0)
     captain: Captain
-    cargo_hold: List[Cargo]
+    cargo_hold: List[Cargo] = Field(min_length=1)
     arrival_date: date
 
     @field_validator("arrival_date")
