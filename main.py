@@ -31,7 +31,7 @@ def load_data() -> list[Spaceship]:
 def add_ship(ships: list[Spaceship]):
     try:
         print("\n[ SHIP DETAILS ]")
-        s_id = input("Ship ID (e.g. NCC-1701): ")
+        s_id = input("Ship ID (e.g. NCC-1702): ")
         model = input("Ship Model: ")
         cap_max = float(input("Max Capacity (kg): "))
 

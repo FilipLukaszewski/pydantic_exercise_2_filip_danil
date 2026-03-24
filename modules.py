@@ -12,7 +12,7 @@ class Captain(BaseModel):
     def validate_license(cls, v: str) -> str:
         pattern = r"^GAL-\d{4}-[A-Z]{2}$"
         if not re.match(pattern, v):
-            raise ValueError("Invalid Format (Required: GAL-1234-XY)")
+            raise ValueError("Invalid Format. (Required: GAL-1234-XY)")
         return v
 
 class Cargo(BaseModel):
