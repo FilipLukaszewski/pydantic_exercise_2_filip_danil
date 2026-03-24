@@ -1,0 +1,1 @@
+# pydantic_exercise_2_filip_danil
