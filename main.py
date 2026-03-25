@@ -31,9 +31,16 @@ def load_data() -> list[Spaceship]:
 def add_ship(ships: list[Spaceship]):
     try:
         print("\n[ SHIP DETAILS ]")
+
         s_id = input("Ship ID (e.g. NCC-1702): ")
+        if any(s.ship_id == s_id for s in ships):
+            print("A ship with that ID is already docked.")
+            return
+        
         model = input("Ship Model: ")
         cap_max = float(input("Max Capacity (kg): "))
+        arrival_input = input("Arrival Date (YYYY-MM-DD): ")
+        arrival_date = date.fromisoformat(arrival_input)
 
         print("\n[ CAPTAIN DETAILS ]")
         cap_name = input("Captain Name: ")
@@ -61,7 +68,7 @@ def add_ship(ships: list[Spaceship]):
             max_capacity_kg=cap_max,
             captain=captain,
             cargo_hold=cargo_items,
-            arrival_date=date.today()
+            arrival_date=arrival_date
         )
 
         ships.append(new_ship)
@@ -91,7 +98,7 @@ def remove_ship(ships: list[Spaceship]):
     ship_id = input("Enter Ship ID to remove: ")
 
     for s in ships:
-        if s.ship_id == ship_id:
+        if s.ship_id.lower() == ship_id.lower():
             ships.remove(s)
             save_data(ships)
             print("Ship removed.")
